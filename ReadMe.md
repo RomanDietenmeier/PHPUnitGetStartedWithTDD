@@ -216,3 +216,36 @@ OK (1 test, 1 assertion)
 You see thanks to unit tests you will immediately see if you fuck something up!<br>
 And that is great.<br>
 Now it is your turn to implement your php projects from now on using unit tests and test driven development or TDD in short 🚀.
+
+# Coverage
+
+## Install xdebug
+
+Run `php -i` and copy the output to your clipboard!<br>
+You can do this directly by running `php -i | clip`.<br>
+Go to https://xdebug.org/wizard and paste your php info:<br>
+![xdebugWizard.png](xdebugWizard.png)<br>
+Then click on the analyze button:<br>
+![xdebugInstructions.png](xdebugInstructions.png)<br>
+Download the dll and put it in your `ext` directory in your php installation folder!<br>
+Also rename it to `php_xdebug.dll`.<br>
+Then open the `php.ini` and add these 3 lines at the bottom:<br>
+
+```ini
+[xdebug]
+zend_extension = xdebug
+xdebug.mode = coverage
+```
+
+This finalizes your xdebug installation and also sets the usage of xdebug for code coverage analysis.
+
+## Create a coverage report
+
+Go to your composer.json and add a `coverage` script:
+
+```json
+"coverage": "phpunit --color=always --coverage-filter src --coverage-html=coverage"
+```
+
+Now your ready to run `composer coverage` to create a coverage report like this:<br>
+![coverageReport.png](coverageReport.png)<br>
